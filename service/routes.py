@@ -28,8 +28,7 @@ def index():
         status=status.HTTP_200_OK,
         message="Hit Counter Service",
         version="1.0.0",
-        url=url_for("list_counters", _external=True),
-    )
+        url=url_for("list_counters", _external=True),)
 
 
 ############################################################
@@ -54,7 +53,7 @@ def create_counters(name):
     app.logger.info("Request to Create counter: %s...", name)
 
     if name in COUNTER:
-        return abort(status.HTTP_409_CONFLICT, 
+        return abort(status.HTTP_409_CONFLICT,
                      f"Counter {name} already exists")
 
     COUNTER[name] = 0
@@ -63,8 +62,7 @@ def create_counters(name):
     return (
         jsonify(name=name, counter=0),
         status.HTTP_201_CREATED,
-        {"Location": location_url},
-    )
+        {"Location": location_url},)
 
 
 ############################################################
@@ -76,7 +74,7 @@ def read_counters(name):
     app.logger.info("Request to Read counter: %s...", name)
 
     if name not in COUNTER:
-        return abort(status.HTTP_404_NOT_FOUND, 
+        return abort(status.HTTP_404_NOT_FOUND,
                      f"Counter {name} does not exist")
 
     counter = COUNTER[name]
@@ -92,7 +90,7 @@ def update_counters(name):
     app.logger.info("Request to Update counter: %s...", name)
 
     if name not in COUNTER:
-        return abort(status.HTTP_404_NOT_FOUND, 
+        return abort(status.HTTP_404_NOT_FOUND,
                      f"Counter {name} does not exist")
 
     COUNTER[name] += 1
