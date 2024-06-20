@@ -46,7 +46,10 @@ def list_counters():
 ############################################################
 # Create counters
 ############################################################
+
 @app.route("/counters/<name>", methods=["POST"])
+
+
 def create_counters(name):
     """Creates a new counter"""
     app.logger.info("Request to Create counter: %s...", name)
